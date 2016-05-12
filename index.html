@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Petra - ProTube</title>
+  </head>
+  <body>
+    <style>
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    </style>
+    <webview id="myWebview" src="http://protube.saproto.nl/screen/" style="width: 100%; height: 100%;"></webview>
+  </body>
+	
+  <script> 
+    var myWebview = document.getElementById('myWebview');
+    console.log("myWebview: ",myWebview);
+    console.log("prototype: ",Object.getPrototypeOf(myWebview)); //=> HTMLElement
+    myWebview.addEventListener("dom-ready", function(){
+      myWebview.openDevTools();
+    });
+  </script>
+</html>
