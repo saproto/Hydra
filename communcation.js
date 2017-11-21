@@ -2,7 +2,7 @@ var io = require('socket.io-client');
 var exec = require('child_process').exec;
 
 var windowDefinitions = require('./windowDefinitions');
-var windowManager = require("./windowManager")
+var windowManager = require("./windowManager");
 
 var serverUri = 'https://atalanta.saproto.nl';
 var serverPort = 1111;
@@ -36,4 +36,4 @@ server.on('loadPages', function(data) {
 
 module.exports.getWindowDefinitions = function() {
 	server.emit('get-window-definitions', {});
-}
+};
