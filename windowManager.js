@@ -9,47 +9,49 @@ const BrowserWindow = electron.BrowserWindow;  // Module to create native browse
 
 module.exports.loadWindows = function() {
     var windowDefinitionsTemp = windowDefinitions.get();
-    windows = new Array(windowDefinitionsTemp.length);
-    Screen = require('screen');
-    displays = Screen.getAllDisplays();
+    if(windowDefinitionsTemp) {
+      windows = new Array(windowDefinitionsTemp.length);
+      Screen = require('screen');
+      displays = Screen.getAllDisplays();
 
-    for(var i=0; i<windowDefinitionsTemp.length; i++) {
-        windows[i] = new BrowserWindow({
-            "x": displays[windowDefinitionsTemp[i].displayNumber].bounds.x,
-            "y": displays[windowDefinitionsTemp[i].displayNumber].bounds.y,
-            "width": displays[windowDefinitionsTemp[i].displayNumber].bounds.width,
-            "height": displays[windowDefinitionsTemp[i].displayNumber].bounds.height,
-            "frame": false,
-            "fullscreen": true,
-            "show": true,
-            "webPreferences": {
-                "allowDisplayingInsecureContent": true,
-                "allowRunningInsecureContent": true,
-                "webSecurity": false,
-                "nodeIntegration": false
-            }
-        });
+      for(var i=0; i<windowDefinitionsTemp.length; i++) {
+          windows[i] = new BrowserWindow({
+              "x": displays[windowDefinitionsTemp[i].displayNumber].bounds.x,
+              "y": displays[windowDefinitionsTemp[i].displayNumber].bounds.y,
+              "width": displays[windowDefinitionsTemp[i].displayNumber].bounds.width,
+              "height": displays[windowDefinitionsTemp[i].displayNumber].bounds.height,
+              "frame": false,
+              "fullscreen": true,
+              "show": true,
+              "webPreferences": {
+                  "allowDisplayingInsecureContent": true,
+                  "allowRunningInsecureContent": true,
+                  "webSecurity": false,
+                  "nodeIntegration": false
+              }
+          });
 
-        windows[i].webContents.session.clearCache(function () {
-            // empty callback... :(
-        });
+          windows[i].webContents.session.clearCache(function () {
+              // empty callback... :(
+          });
 
-        windows[i].loadURL(windowDefinitionsTemp[i].url);
-        windows[i].reload();
-        // Remove // below to enable devTools
-        // windows[i].webContents.openDevTools();
+          windows[i].loadURL(windowDefinitionsTemp[i].url);
+          windows[i].reload();
+          // Remove // below to enable devTools
+          // windows[i].webContents.openDevTools();
 
-        /*// Emitted when the window is closed.
-        windows[i].on('closed', function() {
-          // Dereference the window object, usually you would store windows
-          // in an array if your app supports multi windows, this is the time
-          // when you should delete the corresponding element.
-          windows[i] = null;
-        });*/
+          /*// Emitted when the window is closed.
+          windows[i].on('closed', function() {
+            // Dereference the window object, usually you would store windows
+            // in an array if your app supports multi windows, this is the time
+            // when you should delete the corresponding element.
+            windows[i] = null;
+          });*/
 
-        windows[i].webContents.on('crashed', function () {
-            this.reload();
-        });
+          windows[i].webContents.on('crashed', function () {
+              this.reload();
+          });
+      }
     }
 };
 
