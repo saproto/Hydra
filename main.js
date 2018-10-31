@@ -10,6 +10,8 @@ var mainWindow = null;
 var communication = require("./communcation");
 var windowManager = require("./windowManager");
 
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
