@@ -27,7 +27,8 @@ module.exports.loadWindows = function() {
                     "allowDisplayingInsecureContent": true,
                     "allowRunningInsecureContent": true,
                     "webSecurity": false,
-                    "nodeIntegration": false
+                    "nodeIntegration": false,
+                    "preload": `${__dirname}/scripts/${windowDefinitionsTemp[i].js}`
                 }
             });
 
@@ -50,6 +51,12 @@ module.exports.loadWindows = function() {
 
             windows[i].webContents.on('crashed', function() {
                 this.reload();
+            });
+
+            windows[i].webContents.on('console-message', function (event, level, message, line, sourceId) {
+                if (message.includes('Connection error')) {
+                    this.reload();
+                }
             });
         }
     }
