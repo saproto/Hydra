@@ -22,8 +22,8 @@ app.on("window-all-closed", function () {
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on("ready", function () {
-  setTimeout(function () {
+app.on("ready", () => {
+  setTimeout(() => {
     windowManager.loadWindows();
   }, 500);
 });
