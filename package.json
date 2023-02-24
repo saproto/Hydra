@@ -1,6 +1,6 @@
 {
   "name": "hydra",
-  "version": "h.y.d.r.a",
+  "version": "1.0.0",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
