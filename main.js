@@ -7,7 +7,6 @@ const app = electron.app;  // Module to control application life.
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-var communication = require("./communcation");
 var windowManager = require("./windowManager");
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
@@ -27,7 +26,7 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   
   setTimeout(function() {
-    communication.getWindowDefinitions();
+    windowManager.loadWindows();
   },500);
 
 });
