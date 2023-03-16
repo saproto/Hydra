@@ -4,7 +4,7 @@
     "display": 0
   },
   {
-    "url": "https://protu.be/screen/local",
+    "url": "https://localhost:3000/screen/local",
     "display": 1
   },
   {
