@@ -1,11 +1,17 @@
 {
-  "name": "petrae",
-  "version": "0.1.0",
+  "name": "hydra",
+  "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "prettier:write": "npx prettier --write ."
   },
   "devDependencies": {
-    "electron": "^15.0.0"
+    "electron": "^15.0.0",
+    "prettier": "2.8.4"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-electron": "^1.26.0",
+    "cross-fetch": "^3.1.5"
   }
 }

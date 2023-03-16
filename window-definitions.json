@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://proto.utwente.nl/smartxp",
+    "display": 0
+  },
+  {
+    "url": "https://localhost:3000/screen/local",
+    "display": 1
+  },
+  {
+    "url": "https://proto.utwente.nl/narrowcasting",
+    "display": 2
+  }
+]
