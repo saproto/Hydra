@@ -10,6 +10,7 @@ global.mainWindow;
 let windowManager = require("./windowManager");
 
 app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
+app.commandLine.appendSwitch('ignore-certificate-errors');
 
 // Quit when all windows are closed.
 app.on("window-all-closed", function () {
