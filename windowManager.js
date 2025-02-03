@@ -35,6 +35,7 @@ module.exports.loadWindows = () => {
       });
 
       windows[i].webContents.session.clearCache(() => {} /*empty callback*/);
+      windows[i].webContents.setAudioMuted(windowSpec.muted || false);
       windows[i].loadURL(windowSpec.url);
       enableAdBlocker(windows[i]);
       windows[i].reload();
