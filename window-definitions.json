@@ -9,6 +9,7 @@
   },
   {
     "url": "https://proto.utwente.nl/narrowcasting",
-    "display": 2
+    "display": 2,
+    "muted": true
   }
 ]
