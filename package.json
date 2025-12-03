@@ -7,8 +7,11 @@
     "prettier:write": "npx prettier --write ."
   },
   "devDependencies": {
+    "@ghostery/adblocker-electron": "^2.12.5",
     "cross-fetch": "^4.0.0",
-    "electron": "^39.1.2",
-    "@ghostery/adblocker-electron": "^2.12.5"
+    "electron": "^39.1.2"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
