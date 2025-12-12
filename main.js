@@ -1,6 +1,8 @@
-const { app, BrowserWindow, screen, session } = require('electron');
-const path = require('path');
-const fs = require('fs');
+import { app, BrowserWindow, screen, session } from 'electron';
+import path from 'path';
+import fs from 'fs';
+import { ElectronBlocker } from '@ghostery/adblocker-electron';
+import fetch from 'cross-fetch';
 
 app.commandLine.appendSwitch('use-angle', 'gl');
 app.commandLine.appendSwitch('use-gl', 'egl');
@@ -32,7 +34,7 @@ function createWindowForURL(url, displayIndex) {
     autoHideMenuBar: true,
     backgroundColor: '#000000',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(path.dirname('.'), 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: false,
@@ -53,9 +55,6 @@ function createWindowForURL(url, displayIndex) {
 
 async function initializeAdBlocker() {
   try {
-    const { ElectronBlocker } = require('@ghostery/adblocker-electron');
-    const fetch = require('node-fetch');
-
     const blocker = await ElectronBlocker.fromPrebuiltFull(fetch);
     blocker.enableBlockingInSession(session.defaultSession);
 
@@ -71,7 +70,7 @@ app.whenReady().then(async () => {
   console.log(`Found ${screen.getAllDisplays().length} connected display(s).`);
 
   // Load window definitions from JSON file
-  const windowDefsPath = path.join(__dirname, 'window-definitions.json');
+  const windowDefsPath = path.join(path.dirname('.'), 'window-definitions.json');
   let windowDefs = [];
   try {
     windowDefs = JSON.parse(fs.readFileSync(windowDefsPath, 'utf8'));

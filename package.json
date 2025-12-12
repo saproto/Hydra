@@ -1,17 +1,18 @@
 {
   "name": "three-little-pigs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "start": "electron .",
     "prettier:write": "npx prettier --write ."
   },
   "devDependencies": {
-    "@ghostery/adblocker-electron": "^2.12.5",
-    "cross-fetch": "^4.0.0",
-    "electron": "^39.1.2"
+    "@ghostery/adblocker-electron": "^2.13.0",
+    "cross-fetch": "^4.1.0",
+    "electron": "^39.2.6"
   },
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "path": "^0.12.7"
   }
 }
