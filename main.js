@@ -38,7 +38,7 @@ function createWindowForURL(url, displayIndex) {
     autoHideMenuBar: true,
     backgroundColor: '#000000',
     webPreferences: {
-      preload: path.join(path.dirname('.'), 'preload.js'),
+      preload: path.join(app.getAppPath(), 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: false,
@@ -50,8 +50,10 @@ function createWindowForURL(url, displayIndex) {
   // Force full screen after ready
   win.once('ready-to-show', () => {
     win.setBounds({ x, y, width, height });
+    win.show();
     win.setFullScreen(true);
   });
+
 
   return win;
 }
@@ -75,7 +77,7 @@ app.whenReady().then(async () => {
   console.log(`Found ${screen.getAllDisplays().length} connected display(s).`);
 
   // Load window definitions from JSON file
-  const windowDefsPath = path.join(path.dirname('.'), `${productName}-window-definitions.json`);
+  const windowDefsPath = path.join(app.getAppPath(), `${productName}-window-definitions.json`);
   let windowDefs = [];
   try {
     windowDefs = JSON.parse(fs.readFileSync(windowDefsPath, 'utf8'));

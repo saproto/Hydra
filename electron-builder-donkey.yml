@@ -4,11 +4,11 @@ productName: donkey
 files:
   - "package.json"
   - "main.js"
+  - "preload.js"
+  - "*.json"
   - "node_modules/**/*"
   - "resources/**/*"
   - "dist/**/*"
-
-asar: false
 
 directories:
   buildResources: resources

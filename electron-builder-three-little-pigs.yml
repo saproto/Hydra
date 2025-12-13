@@ -4,6 +4,8 @@ productName: three-little-pigs
 files:
   - "package.json"
   - "main.js"
+  - "preload.js"
+  - "*.json"
   - "node_modules/**/*"
   - "resources/**/*"
   - "dist/**/*"
