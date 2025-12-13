@@ -8,6 +8,8 @@ files:
   - "resources/**/*"
   - "dist/**/*"
 
+asar: false
+
 directories:
   buildResources: resources
 

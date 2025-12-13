@@ -1,10 +1,11 @@
-const { app, BrowserWindow, screen, session } = require('electron');
-const fs = require('fs');
-const path = require('path');
-const {ElectronBlocker} = require('@ghostery/adblocker-electron');
-const {autoUpdater}= require('electron-updater');
-const {fetch}= require('cross-fetch');
+import { app, BrowserWindow, screen, session } from 'electron';
+import path from 'path';
+import fs from 'fs';
+import { ElectronBlocker } from '@ghostery/adblocker-electron';
+import updater from "electron-updater"
 
+const { autoUpdater } = updater
+import fetch from 'cross-fetch';
 //Change which screens the application shows based on the 'name'-window-definitions file
 const productName = app.getName()
 
@@ -12,6 +13,10 @@ app.commandLine.appendSwitch('use-angle', 'gl');
 app.commandLine.appendSwitch('use-gl', 'egl');
 app.commandLine.appendSwitch('ignore-gpu-blacklist');
 app.commandLine.appendSwitch('disable-gpu-driver-bug-workarounds');
+
+ElectronBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+  blocker.enableBlockingInSession(session.defaultSession);
+});
 
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
   if (url.startsWith('https://localhost:3000') || url.startsWith('wss://localhost:3000')) {
@@ -55,21 +60,7 @@ function createWindowForURL(url, displayIndex) {
   return win;
 }
 
-
-async function initializeAdBlocker() {
-  try {
-    const blocker = await ElectronBlocker.fromPrebuiltFull(fetch);
-    blocker.enableBlockingInSession(session.defaultSession);
-
-    console.log('AdBlocker successfully initialized.');
-  } catch (err) {
-    console.error('Failed to initialize AdBlocker:', err);
-  }
-}
-
 app.whenReady().then(async () => {
-
-  await initializeAdBlocker();
 
   console.log(`Found ${screen.getAllDisplays().length} connected display(s).`);
 
