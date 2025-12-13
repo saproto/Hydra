@@ -92,6 +92,9 @@ app.whenReady().then(async () => {
   if (app.isPackaged) {
     // Check for updates on launch
     autoUpdater.checkForUpdates();
+    setInterval(() => {
+      autoUpdater.checkForUpdates();
+    }, 1000 * 60 * 60);
   }
 
   app.on('activate', () => {
