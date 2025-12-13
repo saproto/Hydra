@@ -1,11 +1,9 @@
-import { app, BrowserWindow, screen, session } from 'electron';
-import path from 'path';
-import fs from 'fs';
-import { ElectronBlocker } from '@ghostery/adblocker-electron';
-import updater from "electron-updater"
-
-const { autoUpdater } = updater
-import fetch from 'cross-fetch';
+const { app, BrowserWindow, screen, session } = require('electron');
+const fs = require('fs');
+const path = require('path');
+const {ElectronBlocker} = require('@ghostery/adblocker-electron');
+const {autoUpdater}= require('electron-updater');
+const {fetch}= require('cross-fetch');
 
 //Change which screens the application shows based on the 'name'-window-definitions file
 const productName = app.getName()

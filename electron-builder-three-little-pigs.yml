@@ -2,7 +2,11 @@ appId: com.electron.three-little-pigs
 productName: three-little-pigs
 
 files:
-  - "**/*"
+  - "package.json"
+  - "main.js"
+  - "node_modules/**/*"
+  - "resources/**/*"
+  - "dist/**/*"
 
 directories:
   buildResources: resources

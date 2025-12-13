@@ -2,7 +2,11 @@ appId: com.electron.donkey
 productName: donkey
 
 files:
-  - "**/*"
+  - "package.json"
+  - "main.js"
+  - "node_modules/**/*"
+  - "resources/**/*"
+  - "dist/**/*"
 
 directories:
   buildResources: resources

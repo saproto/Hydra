@@ -1,8 +1,7 @@
 {
   "name": "three-little-pigs",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "main": "main.js",
-  "type": "module",
   "author": {
     "name": "S.A. Proto",
     "email": "haveyoutriedturningitoffandonagain@proto.utwente.nl",
