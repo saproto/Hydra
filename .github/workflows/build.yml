@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+        config: [electron-builder-donkey.yml, electron-builder-three-little-pigs.yml]
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
@@ -21,12 +22,7 @@ jobs:
 
       - name: Build and Publish three-little-pigs
         run: |
-          npx electron-builder --publish always --config electron-builder-three-little-pigs.yml
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and Publish donkey
-        run: |
-          npx electron-builder --publish always --config electron-builder-donkey.yml
+          npx electron-builder install-app-deps
+          npx electron-builder --publish always --config ${{ matrix.config }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
