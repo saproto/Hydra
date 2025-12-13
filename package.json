@@ -3,16 +3,44 @@
   "version": "1.2.0",
   "main": "main.js",
   "type": "module",
+  "author": {
+    "name": "S.A. Proto",
+    "email": "haveyoutriedturningitoffandonagain@proto.utwente.nl",
+    "url": "https://haveyoutriedturningitoffandonagain.nl/"
+  },
   "scripts": {
     "start": "electron .",
+    "dist": "electron-builder",
     "prettier:write": "npx prettier --write ."
   },
   "devDependencies": {
     "@ghostery/adblocker-electron": "^2.13.0",
     "cross-fetch": "^4.1.0",
-    "electron": "^39.2.6"
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
   },
   "dependencies": {
+    "electron-updater": "^6.6.2",
     "path": "^0.12.7"
-  }
+  },
+  "build": {
+  "appId": "com.electron.hydra",
+  "productName": "Hydra",
+  "files": ["**/*"],
+  "directories": { "buildResources": "resources" },
+  "win": {
+    "target": "nsis"
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "category": "Utility"
+  },
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "saproto",
+      "repo": "Hydra"
+    }
+  ]
+}
 }

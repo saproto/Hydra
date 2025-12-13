@@ -2,7 +2,12 @@ import { app, BrowserWindow, screen, session } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import { ElectronBlocker } from '@ghostery/adblocker-electron';
+import updater from "electron-updater"
+
+const { autoUpdater } = updater
 import fetch from 'cross-fetch';
+
+const channel = autoUpdater.channel || "hydra"
 
 app.commandLine.appendSwitch('use-angle', 'gl');
 app.commandLine.appendSwitch('use-gl', 'egl');
@@ -10,14 +15,13 @@ app.commandLine.appendSwitch('ignore-gpu-blacklist');
 app.commandLine.appendSwitch('disable-gpu-driver-bug-workarounds');
 
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
-  if (url.startsWith('https://localhost:3000')) {
+  if (url.startsWith('https://localhost:3000') || url.startsWith('wss://localhost:3000')) {
     event.preventDefault();
     callback(true);
   } else {
     callback(false);
   }
 });
-
 
 function createWindowForURL(url, displayIndex) {
   const displays = screen.getAllDisplays();
@@ -65,17 +69,18 @@ async function initializeAdBlocker() {
 }
 
 app.whenReady().then(async () => {
+
   await initializeAdBlocker();
 
   console.log(`Found ${screen.getAllDisplays().length} connected display(s).`);
 
   // Load window definitions from JSON file
-  const windowDefsPath = path.join(path.dirname('.'), 'window-definitions.json');
+  const windowDefsPath = path.join(path.dirname('.'), `${channel}-window-definitions.json`);
   let windowDefs = [];
   try {
     windowDefs = JSON.parse(fs.readFileSync(windowDefsPath, 'utf8'));
   } catch (err) {
-    console.error('Failed to load window-definitions.json:', err);
+    console.error(`Failed to load ${channel}-window-definitions.json:`, err);
   }
 
   // Create windows based on definitions
@@ -83,11 +88,20 @@ app.whenReady().then(async () => {
     createWindowForURL(def.url, def.display);
   });
 
+  if (app.isPackaged) {
+    // Check for updates on launch
+    autoUpdater.checkForUpdates();
+  }
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindowForURL('https://proto.utwente.nl/smartxp', 0);
     }
   });
+});
+
+app.on('update-downloaded', () => {
+  autoUpdater.quitAndInstall();
 });
 
 app.on('window-all-closed', () => {
