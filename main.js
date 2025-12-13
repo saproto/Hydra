@@ -7,6 +7,7 @@ import updater from "electron-updater"
 const { autoUpdater } = updater
 import fetch from 'cross-fetch';
 
+//Change which screens the application shows based on the 'name'-window-definitions file
 const productName = app.getName()
 
 app.commandLine.appendSwitch('use-angle', 'gl');
