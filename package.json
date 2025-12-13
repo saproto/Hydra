@@ -22,32 +22,5 @@
     "cross-fetch": "^4.1.0",
     "electron-updater": "^6.6.2",
     "path": "^0.12.7"
-  },
-  "build": {
-    "appId": "com.electron.hydra",
-    "productName": "Hydra",
-    "files": [
-      "**/*"
-    ],
-    "directories": {
-      "buildResources": "resources"
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb"
-      ],
-      "category": "Utility"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "saproto",
-        "repo": "Hydra"
-      }
-    ]
   }
 }

@@ -1,0 +1,24 @@
+appId: com.electron.three-little-pigs
+productName: three-little-pigs
+
+files:
+  - "**/*"
+
+directories:
+  buildResources: resources
+
+win:
+  target: nsis
+
+artifactName: "${productName}-${version}-${os}.${ext}"
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Utility
+
+publish:
+  - provider: github
+    owner: saproto
+    repo: Hydra

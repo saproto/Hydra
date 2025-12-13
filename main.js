@@ -7,7 +7,7 @@ import updater from "electron-updater"
 const { autoUpdater } = updater
 import fetch from 'cross-fetch';
 
-const channel = autoUpdater.channel || "hydra"
+const productName = app.getName()
 
 app.commandLine.appendSwitch('use-angle', 'gl');
 app.commandLine.appendSwitch('use-gl', 'egl');
@@ -75,12 +75,12 @@ app.whenReady().then(async () => {
   console.log(`Found ${screen.getAllDisplays().length} connected display(s).`);
 
   // Load window definitions from JSON file
-  const windowDefsPath = path.join(path.dirname('.'), `${channel}-window-definitions.json`);
+  const windowDefsPath = path.join(path.dirname('.'), `${productName}-window-definitions.json`);
   let windowDefs = [];
   try {
     windowDefs = JSON.parse(fs.readFileSync(windowDefsPath, 'utf8'));
   } catch (err) {
-    console.error(`Failed to load ${channel}-window-definitions.json:`, err);
+    console.error(`Failed to load ${productName}-window-definitions.json:`, err);
   }
 
   // Create windows based on definitions
