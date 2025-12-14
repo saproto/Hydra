@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen, session } from 'electron';
+import { app, BrowserWindow, globalShortcut, screen, session } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import { ElectronBlocker } from '@ghostery/adblocker-electron';
@@ -96,9 +96,13 @@ app.whenReady().then(async () => {
       autoUpdater.checkForUpdates();
     }, 1000 * 60 * 60);
   }
+
+  globalShortcut.register("Escape", () => {
+    app.quit();
+  });
 });
 
-app.on('update-downloaded', () => {
+autoUpdater.on('update-downloaded', () => {
   autoUpdater.quitAndInstall();
 });
 
