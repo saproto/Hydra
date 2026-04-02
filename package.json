@@ -1,6 +1,6 @@
 {
   "name": "three-little-pigs",
-  "version": "v1.9.11",
+  "version": "1.9.12",
   "main": "main.js",
   "type": "module",
   "author": {
