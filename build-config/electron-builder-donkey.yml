@@ -1,5 +1,5 @@
-appId: com.electron.omnomcom
-productName: omnomcom
+appId: com.electron.donkey
+productName: donkey
 
 files:
   - "package.json"
@@ -11,7 +11,7 @@ files:
   - "dist/**/*"
 
 directories:
-  buildResources: resources
+  buildResources: resources/donkey
 
 win:
   target: nsis
@@ -28,4 +28,4 @@ publish:
   - provider: github
     owner: saproto
     repo: Hydra
-    channel: omnomcom
+    channel: donkey

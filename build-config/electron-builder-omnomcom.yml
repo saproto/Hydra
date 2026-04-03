@@ -1,5 +1,5 @@
-appId: com.electron.donkey
-productName: donkey
+appId: com.electron.omnomcom
+productName: omnomcom
 
 files:
   - "package.json"
@@ -11,10 +11,11 @@ files:
   - "dist/**/*"
 
 directories:
-  buildResources: resources
+  buildResources: resources/omnomcom
 
 win:
   target: nsis
+  icon: resources/omnomcom/omnomcom.ico
 
 artifactName: "${productName}-${version}-${os}.${ext}"
 
@@ -23,9 +24,10 @@ linux:
     - AppImage
     - deb
   category: Utility
+  icon: resources/omnomcom/omnomcom.png
 
 publish:
   - provider: github
     owner: saproto
     repo: Hydra
-    channel: donkey
+    channel: omnomcom

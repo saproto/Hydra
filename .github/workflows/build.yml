@@ -22,11 +22,11 @@ jobs:
 
       - name: Copy ${{ matrix.config }}-window-definitions.json to window-definitions.json
         run: |
-          cp ${{ matrix.config }}-window-definitions.json window-definitions.json
+          cp window-definitions/${{ matrix.config }}-window-definitions.json window-definitions.json
 
       - name: Build and Publish ${{ matrix.config }}
         run: |
           npx electron-builder install-app-deps
-          npx electron-builder --publish always --config electron-builder-${{ matrix.config }}.yml
+          npx electron-builder --publish always --config build-config/electron-builder-${{ matrix.config }}.yml
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

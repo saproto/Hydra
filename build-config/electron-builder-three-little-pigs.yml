@@ -11,7 +11,7 @@ files:
   - "dist/**/*"
 
 directories:
-  buildResources: resources
+  buildResources: resources/three-little-pigs
 
 win:
   target: nsis
