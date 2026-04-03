@@ -1,4 +1,4 @@
-#Electron apps
+# Proto's Electron apps
 This repository builds three seperate electron apps:
  - The OmnomCom app
  - The ThreeLittlePigs app
