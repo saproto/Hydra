@@ -8,11 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
       - name: Create Draft Release
-        id: create_release
         uses: softprops/action-gh-release@v2
         with:
           draft: true
@@ -46,3 +43,14 @@ jobs:
           npx electron-builder --publish always --config build-config/electron-builder-${{ matrix.config }}.yml
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-draft-release:
+    needs: [create-draft-release, release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Publish Draft Release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
