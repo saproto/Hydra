@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        config: [donkey, three-little-pigs]
+        config: [donkey, three-little-pigs, omnomcom]
     steps:
       - uses: actions/checkout@v6
       - name: Setup Node.js
