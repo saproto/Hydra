@@ -7,11 +7,6 @@ import updater from "electron-updater"
 const { autoUpdater } = updater
 import fetch from 'cross-fetch';
 
-app.commandLine.appendSwitch('use-angle', 'gl');
-app.commandLine.appendSwitch('use-gl', 'egl');
-app.commandLine.appendSwitch('ignore-gpu-blacklist');
-app.commandLine.appendSwitch('disable-gpu-driver-bug-workarounds');
-
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
   if (url.startsWith('https://localhost:3000') || url.startsWith('wss://localhost:3000')) {
     event.preventDefault();
