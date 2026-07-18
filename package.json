@@ -14,7 +14,7 @@
     "prettier:write": "npx prettier --write ."
   },
   "devDependencies": {
-    "electron": "^42.6.0",
+    "electron": "^42.6.1",
     "electron-builder": "^26.15.3"
   },
   "dependencies": {
