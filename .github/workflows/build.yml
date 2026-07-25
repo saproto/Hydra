@@ -10,7 +10,7 @@ jobs:
       contents: write
     steps:
       - name: Create Draft Release
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           draft: true
 
@@ -22,9 +22,9 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         config: [donkey, three-little-pigs, omnomcom]
     steps:
-      - uses: actions/checkout@v7.0.0
+      - uses: actions/checkout@v7.0.1
       - name: Setup Node.js
-        uses: actions/setup-node@v6.4.0
+        uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
           cache: npm
@@ -51,6 +51,6 @@ jobs:
       contents: write
     steps:
       - name: Publish Draft Release
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           draft: false
